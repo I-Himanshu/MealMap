@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Skills Form</title>
+</head>
+<body>
+
+    <h2>Enter Name and Skills</h2>
+    <form id="skillsForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required><br><br>
+
+        <div id="skillsList">
+            <input type="text" placeholder="Skill Name" required>
+            <input type="text" placeholder="Skill Level (%)" required>
+            <button type="button" id="addSkill">+ Add Skill</button>
+        </div>
+        
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        const form = document.getElementById('skillsForm');
+        const skillsList = document.getElementById('skillsList');
+
+        // Function to add new skill inputs
+        document.getElementById('addSkill').addEventListener('click', function() {
+            const newSkillInput = document.createElement('div');
+            newSkillInput.innerHTML = `
+                <input type="text" placeholder="Skill Name" required>
+                <input type="text" placeholder="Skill Level (%)" required>
+            `;
+            skillsList.insertBefore(newSkillInput, document.getElementById('addSkill'));
+        });
+
+        // Event listener for form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const skillInputs = skillsList.querySelectorAll('div');
+
+            const skills = {};
+
+            skillInputs.forEach(inputDiv => {
+                const skillName = inputDiv.querySelector('input:nth-child(1)').value;
+                const skillLevel = inputDiv.querySelector('input:nth-child(2)').value;
+                skills[skillName] = skillLevel;
+            });
+
+            const formData = {
+                name: name,
+                skills: skills
+            };
+
+            console.log(formData);
+        });
+    </script>
+
+</body>
+</html>

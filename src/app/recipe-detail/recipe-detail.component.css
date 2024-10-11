@@ -1,0 +1,93 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 20px;
+}
+
+.recipe-detail-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.back-arrow-button {
+   background-color: transparent; /* Transparent background */
+   border: none; /* No border */
+   color: #007bff; /* Blue color */
+   font-size: large; /* Increase font size */
+   cursor: pointer; /* Pointer cursor on hover */
+   margin-bottom: 15px; /* Space below the button */
+}
+
+.back-arrow-button:hover {
+   text-decoration: underline; /* Underline on hover */
+}
+
+.recipe-title {
+   text-align: center;
+   margin-bottom: 15px;
+}
+
+.recipe-image {
+   width: 100%;
+   height: auto;
+   border-radius: 4px;
+}
+
+.recipe-info {
+   margin-bottom: 20px;
+}
+
+.recipe-info p {
+   margin: 5px 0;
+}
+
+.vegetarian {
+   color: #28a745; /* Green color for vegetarian */
+}
+
+.ingredients-section,
+.steps-section {
+   margin-bottom: 20px;
+}
+
+.ingredients-list,
+.steps-list {
+   padding-left: 20px; /* Indent list items */
+}
+
+.ingredients-list li,
+.steps-list li {
+   margin-bottom: 10px; /* Space between list items */
+   background-color: #f2f2f2; /* Light gray background for list items */
+   padding: 10px; /* Padding for list items */
+   border-radius: 4px; /* Rounded corners */
+}
+
+.back-button {
+   display: block; /* Center the button */
+   width: calc(100% - 20px); /* Full width minus padding */
+   padding: 10px; 
+   background-color: #007bff; 
+   color: white; 
+   border: none; 
+   border-radius: 4px; 
+   cursor: pointer; 
+   text-align: center; 
+   margin-top: 10px; /* Space above button */
+}
+
+.back-button:hover {
+   background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Loading styles */
+.loading-container {
+   text-align: center;
+   font-size: large;
+   color: #666;
+}

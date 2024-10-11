@@ -1,0 +1,159 @@
+<div class="recipe-form-container">
+  <h3>Add a New Recipe</h3>
+  <form (ngSubmit)="submitRecipeForm()" #recipeForm="ngForm">
+    <div class="form-group">
+      <label for="recipeTitle">Title</label>
+      <input
+        id="recipeTitle"
+        type="text"
+        [(ngModel)]="newRecipe.title"
+        name="title"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="recipeCuisine">Cuisine</label>
+      <select id="recipeCuisine" [(ngModel)]="newRecipe.cuisine" name="cuisine">
+        <option value="North Indian">North Indian</option>
+        <option value="South Indian">South Indian</option>
+        <option value="East Indian">East Indian</option>
+        <option value="West Indian">West Indian</option>
+        <option value="Mughlai">Mughlai</option>
+        <option value="Italian">Italian</option>
+        <option value="Chinese">Chinese</option>
+        <option value="Mexican">Mexican</option>
+        <option value="Thai">Thai</option>
+        <option value="American">American</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="recipeKcal">Kcal</label>
+      <input
+        id="recipeKcal"
+        type="text"
+        [(ngModel)]="newRecipe.kcal"
+        name="kcal"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="recipeImage">Image URL</label>
+      <input
+        id="recipeImage"
+        type="text"
+        [(ngModel)]="newRecipe.imageURL"
+        name="imageURL"
+        required
+      />
+    </div>
+
+    <h4>Ingredients</h4>
+    <div class="ingredient-inputs">
+      <input
+        type="text"
+        [(ngModel)]="newIngredientName"
+        placeholder="Ingredient Name"
+        name="newIngredientName"
+        required
+      />
+      <input
+        type="text"
+        [(ngModel)]="newIngredientQuantity"
+        placeholder="Quantity"
+        name="newIngredientQuantity"
+        required
+      />
+      <button type="button" (click)="addIngredient()" class="add-button">
+        Add Ingredient
+      </button>
+    </div>
+
+    <!-- Show table only if there are ingredients -->
+    <div class="ingredient-list" *ngIf="newRecipe.ingredients | keyvalue as ingredientList; else noIngredients">
+      <table *ngIf="ingredientList.length > 0">
+        <thead>
+          <tr>
+            <th>Ingredient</th>
+            <th>Quantity</th>
+            <th></th> <!-- Empty header for the cross icon -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ingredient of ingredientList">
+            <td>{{ ingredient.key }}</td>
+            <td>{{ ingredient.value }}</td>
+            <td>
+              <!-- Cross icon to remove ingredient -->
+              <button type="button" (click)="removeIngredient(ingredient.key)" class="remove-button">
+                &times;
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Template for no ingredients -->
+    <ng-template #noIngredients>
+      <p>No ingredients added yet.</p>
+    </ng-template>
+
+    <h4>Steps</h4>
+    <!-- Step Input -->
+    <div class="step-inputs">
+      <input
+        type="text"
+        [(ngModel)]="newStep"
+        placeholder="Step"
+        name="newStep"
+        required
+      />
+      <button type="button" (click)="addStep()" class="add-button">
+        Add Step
+      </button>
+    </div>
+
+    <!-- Show step list only if there are steps -->
+    <div class="step-list" *ngIf="newRecipe.steps.length > 0; else noSteps">
+      <div *ngFor="let step of newRecipe.steps; let i = index" class="step-item">
+        <span>{{ i + 1 }}. {{ step }}</span>
+        
+         <!-- Cross icon to remove step -->
+         <button type="button" (click)="removeStep(i)" class="remove-button">
+           &times;
+         </button> 
+         
+      </div>
+    </div>
+
+    <!-- Template for no steps -->
+    <ng-template #noSteps>
+      <p>No steps added yet.</p>
+    </ng-template>
+
+    <!-- Stylish Vegetarian Option -->
+    <div class="form-group vegetarian-toggle">
+      <input
+        id="isVegetarian"
+        type="checkbox"
+        [(ngModel)]="newRecipe.isVegetarian"
+        name="isVegetarian"
+        style="display: none;"  
+        (change)="toggleVegetarian()"
+      />
+      <label 
+        for="isVegetarian" 
+        [class.active]="newRecipe.isVegetarian" 
+        (click)="newRecipe.isVegetarian = !newRecipe.isVegetarian"
+      >
+        {{ newRecipe.isVegetarian ? 'Vegetarian: Yes' : 'Vegetarian: No' }}
+      </label> 
+    </div>    
+
+     <!-- Submit Button -->
+     <button type='submit' class='submit-button'>Add Recipe</button> 
+   </form> 
+</div> 

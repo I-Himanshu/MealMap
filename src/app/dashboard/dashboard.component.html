@@ -1,0 +1,41 @@
+<div class="dashboard-container">
+  <div class="filter-menu">
+    <h2>Filters</h2>
+    <div class="filter-section">
+      <h3>Cuisine</h3>
+      <label *ngFor="let cuisine of cuisines" 
+             (click)="toggleCuisine(cuisine)" 
+             [class.selected]="selectedCuisines.has(cuisine)">
+        {{ cuisine }}
+      </label>
+    </div>
+
+    <div class="filter-section">
+      <h3>Dietary Preferences</h3>
+      <label (click)="toggleVegetarian()" [class.selected]="isVegetarian">
+        Vegetarian
+      </label>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="add-button-container">
+      <button (click)="toggleForm()" class="add-button">Add New Recipe</button>
+    </div>
+
+    <div class="recipe-list">
+      <a *ngFor="let recipe of filteredRecipes" [routerLink]="['/recipe', recipe.id]" class="recipe-card">
+          <img [src]="recipe.imageURL" alt="{{ recipe.title }}" />
+          <h4>{{ recipe.title }}</h4>
+          <p>{{ recipe.kcal }} kcal</p>
+      </a>
+    </div>
+
+    <div class="modal" *ngIf="isFormVisible" (click)="toggleForm()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <app-recipe-form (recipeAdded)="addRecipe($event)"></app-recipe-form>
+        <button class="close-button" (click)="toggleForm()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

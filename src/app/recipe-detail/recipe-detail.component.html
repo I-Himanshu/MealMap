@@ -1,0 +1,39 @@
+<div *ngIf="recipe; else loading" class="recipe-detail-container">
+  <button (click)="goBack()" class="back-arrow-button">&larr; Back</button> <!-- Back arrow button -->
+  
+  <h2 class="recipe-title">{{ recipe.title }}</h2>
+  <img [src]="recipe.imageURL" alt="{{ recipe.title }}" class="recipe-image" />
+
+  <div class="recipe-info">
+    <p><strong>Cuisine:</strong> <span>{{ recipe.cuisine }}</span></p>
+    <p><strong>Calories:</strong> <span>{{ recipe.kcal }} kcal</span></p>
+    <p>
+      <strong>Vegetarian:</strong>
+      <span [class.vegetarian]="recipe.isVegetarian">{{ recipe.isVegetarian ? 'Yes' : 'No' }}</span>
+    </p>
+  </div>
+
+  <div class="ingredients-section">
+    <h3>Ingredients</h3>
+    <ul class="ingredients-list">
+      <li *ngFor="let ingredient of recipe.ingredients | keyvalue">
+        <span>{{ ingredient.value }} of {{ ingredient.key }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="steps-section">
+    <h3>Steps</h3>
+    <ol class="steps-list">
+      <li *ngFor="let step of recipe.steps">{{ step }}</li>
+    </ol>
+  </div>
+
+  <button (click)="goBack()" class="back-button">Back to Recipes</button>
+</div>
+
+<ng-template #loading>
+  <div class="loading-container">
+    <p>Loading recipe details...</p>
+  </div>
+</ng-template>
