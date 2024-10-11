@@ -11,6 +11,11 @@ export const CUISINES = [
   'Mexican',
   'Thai',
   'American',
+  'Instant',
+  'Snacks',
+  'Fusion',
+  'Dessert',
+  'Salad'
 ];
 
 
@@ -102,7 +107,7 @@ export const DEFAULT_RECIPES: Recipe[] = [
   {
     id: 5,
     title: 'Pav Bhaji Omelette',
-    isVegetarian: true,
+    isVegetarian: false,
     cuisine: 'Fusion',
     kcal: '450 kcal',
     ingredients: {
