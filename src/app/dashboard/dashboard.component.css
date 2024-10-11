@@ -106,17 +106,21 @@
   border-radius: 10px;
   margin-bottom: 15px;
   transition: transform 0.3s ease;
+  object-fit: scale-down;
+  height: 150px;
 }
 
 .recipe-card img:hover {
   transform: scale(1.05);
 }
 
-.recipe-card h4 {
+.recipe-card .name {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   color: #333;
   margin: 10px 0;
+  text-decoration: none;
+  display: block;
 }
 
 .recipe-card p {
@@ -129,6 +133,17 @@
 .recipe-card p:last-child {
   font-weight: 400;
   color: #ff5722;
+}
+
+.delete-button{
+  background-color: #dc3545;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .modal {

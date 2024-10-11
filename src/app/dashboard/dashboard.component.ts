@@ -70,5 +70,11 @@ export class DashboardComponent {
     this.filterRecipes();
     this.toggleForm();
   }
+
+  deleteRecipe(id: number) {
+    this.recipeService.deleteRecipe(id);
+    this.recipes = this.recipeService.getRecipes();
+    this.filterRecipes();
+  }
   
 }

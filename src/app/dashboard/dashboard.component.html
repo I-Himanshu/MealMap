@@ -24,11 +24,12 @@
     </div>
 
     <div class="recipe-list">
-      <a *ngFor="let recipe of filteredRecipes" [routerLink]="['/recipe', recipe.id]" class="recipe-card">
+      <div *ngFor="let recipe of filteredRecipes" class="recipe-card">
           <img [src]="recipe.imageURL" alt="{{ recipe.title }}" />
-          <h4>{{ recipe.title }}</h4>
+          <a [routerLink]="['/recipe', recipe.id]" class="name">{{ recipe.title }}</a>
           <p>{{ recipe.kcal }} kcal</p>
-      </a>
+          <button class="delete-button" (click)="deleteRecipe(recipe.id)">Delete</button>
+      </div>
     </div>
 
     <div class="modal" *ngIf="isFormVisible" (click)="toggleForm()">
